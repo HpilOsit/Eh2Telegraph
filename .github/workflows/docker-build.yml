@@ -1,4 +1,4 @@
-name: docker build and push 
+name: docker build and push
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         id: prep
         if: "startsWith(github.ref, 'refs/tags/v')"
         run: |
-          echo ::set-output name=tags::ghcr.io/hpilosit/ehbot0:${GITHUB_REF#refs/tags/v}
+          echo ::set-output name=tags::ghcr.io/hpilosit/ehbot:${GITHUB_REF#refs/tags/v}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
@@ -32,7 +32,7 @@ jobs:
         with:
           registry: ghcr.io
           username: hpilosit
-          password: ${{ secrets.BITHUB_TOKEN }}
+          password: ${{ secrets.DITHUB_TOKEN }}
       - name: Generate App Version
         run: echo VERSIONED_TAG=`git describe --tags --always` >> $GITHUB_ENV
       - name: Build docker image
