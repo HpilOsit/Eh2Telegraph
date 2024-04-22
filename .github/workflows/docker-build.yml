@@ -31,8 +31,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: hpilosit
-          password: ${{ secrets.BITHUB_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_PAT }}
       - name: Generate App Version
         run: echo VERSIONED_TAG=`git describe --tags --always` >> $GITHUB_ENV
       - name: Build docker image
