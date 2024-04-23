@@ -41,5 +41,5 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/HpiloOit/ehbot:latest
+            ghcr.io/HpilOit/ehbot:latest
             ghcr.io/HpilOsit/ehbot:${{ env.VERSIONED_TAG }}
