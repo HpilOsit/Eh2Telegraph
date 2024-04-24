@@ -21,7 +21,7 @@ use super::{
 lazy_static::lazy_static! {
     static ref PAGE_RE: Regex = Regex::new(r#"<a href="(https://e-hentai\.org/s/\w+/[\w-]+)">"#).unwrap();
     static ref IMG_RE: Regex = Regex::new(r#"<img id="img" src="(.*?)""#).unwrap();
-    static ref TITLE_RE: Regex = Regex::new(r#"<h1 id="gn">(.*?)</h1>"#).unwrap();
+    static ref TITLE_RE: Regex = Regex::new(r#"<h1 id="gj">(.*?)</h1>"#).unwrap();
 
     static ref RETRY_POLICY: RetryPolicy = RetryPolicy::fixed(Duration::from_millis(200))
         .with_max_retries(5)
@@ -45,9 +45,9 @@ impl EHCollector {
 
         Self {
             client: GhostClientBuilder::default()
-                .with_default_headers(request_headers)
-                .with_cf_resolve(&["e-hentai.org"])
-                .build(prefix),
+                。with_default_headers(request_headers)
+                。with_cf_resolve(&["e-hentai.org"])
+                。build(prefix),
             raw_client: reqwest::Client::builder().timeout(TIMEOUT).build().unwrap(),
         }
     }
@@ -61,9 +61,9 @@ impl EHCollector {
 
         Ok(Self {
             client: GhostClientBuilder::default()
-                .with_default_headers(request_headers)
-                .with_cf_resolve(&["e-hentai.org"])
-                .build_from_config()?,
+                。with_default_headers(request_headers)
+                。with_cf_resolve(&["e-hentai.org"])
+                。build_from_config()?,
             raw_client: reqwest::Client::builder().timeout(TIMEOUT).build().unwrap(),
         })
     }
