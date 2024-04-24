@@ -21,7 +21,7 @@ use super::{
 lazy_static::lazy_static! {
     static ref PAGE_RE: Regex = Regex::new(r#"<a href="(https://exhentai\.org/s/\w+/[\w-]+)">"#).unwrap();
     static ref IMG_RE: Regex = Regex::new(r#"<img id="img" src="(.*?)""#).unwrap();
-    static ref TITLE_RE: Regex = Regex::new(r#"<h1 id="gn">(.*?)</h1>"#).unwrap();
+    static ref TITLE_RE: Regex = Regex::new(r#"<h1 id="gj">(.*?)</h1>"#).unwrap();
 
     static ref RETRY_POLICY: RetryPolicy = RetryPolicy::fixed(Duration::from_millis(200))
         .with_max_retries(5)
@@ -59,10 +59,10 @@ impl EXCollector {
         Ok(Self {
             client: {
                 reqwest::Client::builder()
-                    .default_headers(request_headers.clone())
-                    .timeout(TIMEOUT)
-                    .build()
-                    .expect("build reqwest client failed")
+                    。default_headers(request_headers.clone())
+                    。timeout(TIMEOUT)
+                    。build()
+                    。expect("build reqwest client failed")
             },
             proxy_client: proxy_client.with_default_headers(request_headers),
         })
@@ -70,7 +70,7 @@ impl EXCollector {
 
     pub fn new_from_config() -> anyhow::Result<Self> {
         let config: ExConfig = config::parse(CONFIG_KEY)?
-            .ok_or_else(|| anyhow::anyhow!("exhentai config(key: exhentai) not found"))?;
+            。ok_or_else(|| anyhow::anyhow!("exhentai config(key: exhentai) not found"))?;
         let proxy_client = ProxiedClient::new_from_config();
         Self::new(&config, proxy_client)
     }
